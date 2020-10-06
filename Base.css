@@ -9,10 +9,21 @@
 
 #MainBox
 {
-    padding-top: 50px;
+    padding-top: 60px;
+    padding-left: 10px;
+    padding-right: 10px;
 
     max-width: 800px;
     margin: 0 auto;
+}
+
+@media only screen
+and (max-width: 500px)
+{ 
+    #MainBox
+    {
+        padding-top: 20px;
+    }
 }
 
 #MainBox #TypeBox #Input
