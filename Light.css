@@ -4,6 +4,17 @@ body
     color: #333333;
 }
 
+#MainBox #RestartBtn
+{
+    background-color: inherit;
+    color: inherit;
+}
+
+#MainBox #RestartBtn:hover
+{
+    background-color: #E8E8E8;
+}
+
 #MainBox #TypeBox #Input
 {
     background-color: inherit;

@@ -26,6 +26,16 @@ and (max-width: 500px)
     }
 }
 
+#MainBox #RestartBtn 
+{
+    padding: 5px 10px;
+    border-width: 2px;
+    border-style: solid;
+    margin-top: 5px;
+
+    font-size: 18px;
+}
+
 #MainBox #TypeBox #Input
 {
     border: 0;
@@ -37,6 +47,7 @@ and (max-width: 500px)
 #MainBox #TypeBox #Info
 {
     font-size: 20px;
+    margin-bottom: 10px;
 }
 
 #MainBox #TypeBox #Board 
@@ -71,3 +82,4 @@ and (max-width: 500px)
 {
     font-size: 24px;
 }
+
