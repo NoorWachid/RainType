@@ -1,0 +1,38 @@
+body 
+{
+    background-color: #333333;
+    color: #DDDDDD;
+}
+
+#MainBox #TypeBox #Input
+{
+    background-color: inherit;
+    color: #DDDDDD;
+}
+
+#MainBox #TypeBox #Board span 
+{
+    color: #BFBFBF;
+}
+
+#MainBox #TypeBox #Board .Active
+{
+    color: #DDDDDD;
+    background-color: #686569;
+}
+
+#MainBox #TypeBox #Board .ActiveWrong
+{
+    color: #DDDDDD;
+    background-color: #995657;
+}
+
+#MainBox #TypeBox #Board .Typed
+{
+    color: #DDDDDD;
+}
+
+#MainBox #TypeBox #Board .TypedWrong
+{
+    color: #FF7777;
+}

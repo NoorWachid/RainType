@@ -1,0 +1,62 @@
+*,
+*::before,
+*::after
+{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+#MainBox
+{
+    padding-top: 50px;
+
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+#MainBox #TypeBox #Input
+{
+    border: 0;
+    margin-bottom: 10px;
+
+    font-size: 24px;
+}
+
+#MainBox #TypeBox #Info
+{
+    font-size: 20px;
+}
+
+#MainBox #TypeBox #Board 
+{
+    margin-bottom: 10px;
+
+    width: 100%;
+    height: 120px;
+
+    overflow-y: hidden;
+    overflow-x: hidden;
+}
+
+#MainBox #TypeBox #Board span 
+{
+    padding: 2px 2px;
+
+    font-size: 28px;
+}
+
+#MainBox #ScoreBox
+{
+    font-size: 20px;
+}
+
+#MainBox #ScoreBox #Wpm
+{
+    font-size: 30px;
+}
+
+#MainBox #ScoreBox #Accuracy
+{
+    font-size: 24px;
+}
