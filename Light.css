@@ -4,15 +4,23 @@ body
     color: #333333;
 }
 
-#MainBox #RestartBtn
+#MainBox button,
+#MainBox .Setting label
 {
     background-color: inherit;
+    border-color: #BFBFBF;
     color: inherit;
 }
 
-#MainBox #RestartBtn:hover
+#MainBox button:hover,
+#MainBox .Setting label:hover
 {
     background-color: #E8E8E8;
+}
+
+#MainBox .Setting input[type="radio"]:checked + label
+{
+    background-color: #DADADA;
 }
 
 #MainBox #TypeBox #Input

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <title>TypeIt - Typing Test</title>
+    <link rel="stylesheet" href="Base.css">
+    <link rel="stylesheet" href="Light.css" id="Theme">
+</head>
+<body>
+    <div id="MainBox">
+        <div id="TypeBox">
+            <div id="Board"></div>
+            <input id="Input" type="text" autofocus>
+            <div id="Info">
+                <span id="Timer"></span> &mdash;
+                <span id="CurrentWpm"></span>
+            </div>
+        </div>
+
+        <div id="ScoreBox">
+            <span id="Wpm"></span> WPM &mdash;
+            <span id="Accuracy"></span>% accuracy
+            <div id="WordDetail"></div>
+            <div id="KeystrokeDetail"></div>
+        </div>
+
+        <div class="Buttons">
+            <button id="RestartBtn">Restart</button>
+            <button id="SettingsBtn">Settings</button>
+        </div>
+
+        <div id="SettingsBox">
+            <div class="Setting">
+                <input type="radio" name="Theme" value="Light" id="Theme0" checked>
+                <label for="Theme0">Light</label>
+                <input type="radio" name="Theme" value="Dark" id="Theme1">
+                <label for="Theme1">Dark</label>
+            </div>
+            <div class="Setting">
+                <input type="radio" name="Time" value="30" id="Time0">
+                <label for="Time0">30s</label>
+                <input type="radio" name="Time" value="60" id="Time1" checked>
+                <label for="Time1">60s</label>
+                <input type="radio" name="Time" value="120" id="Time2">
+                <label for="Time2">2m</label>
+                <input type="radio" name="Time" value="300" id="Time3">
+                <label for="Time3">5m</label>
+            </div>
+            <!--div class="Setting">
+                <input type="radio" name="Word" value="Light" id="Word0">
+                <label for="Word0">Basic</label>
+                <input type="radio" name="Word" value="Dark" id="Word1">
+                <label for="Word1">Advanced</label>
+            </div>
+            <div class="Setting">
+                <div id="Languages"></div>
+            </div-->
+            <button id="SaveBtn">Save</button>
+        </div>
+    </div>
+
+    <script src="Data.js"></script>
+    <!-- <script src="Main.ob.js"></script> -->
+    <script src="Main.js"></script>
+</body>
