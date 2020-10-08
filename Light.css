@@ -4,6 +4,16 @@ body
     color: #333333;
 }
 
+footer
+{
+    border-top: 1px solid #EEE;
+    color: #AAA;
+}
+footer a
+{
+    color: #888;
+}
+
 #MainBox button,
 #MainBox .Setting label
 {
