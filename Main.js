@@ -240,8 +240,6 @@ function OnSaveSettings()
 
     localStorage.setItem("Time", formTime);
     localStorage.setItem("Theme", formTheme);
-
-    Reset();
 }
 
 Initialize();
