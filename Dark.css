@@ -6,12 +6,15 @@ body
 
 footer
 {
-    border-top: 1px solid #111;
     color: #777;
 }
 footer a
 {
     color: #AAA;
+}
+footer > .Border
+{
+    border-color: #222;
 }
 
 #MainBox button,

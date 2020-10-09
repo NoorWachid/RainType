@@ -14,10 +14,28 @@ body
     flex-direction: column;
 }
 
-footer 
+footer > .Content
 {
+    display: none;
+
     padding: 10px 15px;
     font-size: 16px;
+}
+
+footer > .Border
+{
+    border-top-width: 20px;
+    border-style: solid;
+}
+
+footer:hover > .Border
+{
+    border-width: 1px;
+}
+
+footer:hover > .Content
+{
+    display: block;
 }
 
 footer a
