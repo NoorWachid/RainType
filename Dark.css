@@ -42,21 +42,21 @@ footer > .Border
     color: #DDDDDD;
 }
 
-#MainBox #TypeBox #Board span 
+#MainBox #TypeBox #Board .Word
 {
     color: #BFBFBF;
 }
 
-#MainBox #TypeBox #Board .Active
+#MainBox #TypeBox .Active,
 {
-    color: #DDDDDD;
-    background-color: #686569;
+    color: #DDDDDD !important;
+    background-color: #686569 !important;
 }
 
-#MainBox #TypeBox #Board .ActiveWrong
+#MainBox #TypeBox .ActiveWrong,
 {
     color: #DDDDDD;
-    background-color: #995657;
+    background-color: #995657 !important;
 }
 
 #MainBox #TypeBox #Board .Typed

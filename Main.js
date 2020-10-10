@@ -18,12 +18,14 @@ const saveBtnLm = document.getElementById("SaveBtn");
 
 const themeLm = document.getElementById("Theme");
 const themeLms = document.getElementsByName("Theme");
+const modeLms = document.getElementsByName("Mode");
 const timeLms = document.getElementsByName("Time");
 
 
 let indexCounter = 0;
 let charCounter = 0;
 let correctCharCounter = 0;
+let wrongCharCounter = 0;
 let wordCounter = 0;
 let corretWordCounter = 0;
 let wordMin = 110;
@@ -36,13 +38,14 @@ let intervalId = 0;
 let beginPoint = 0;
 let elements = [];
 let prevTypedWord = "";
+let mode = "Scroll";
 
 function Initialize()
 {
     inputLm.addEventListener("blur", ev => inputLm.placeholder = "Type here...");
     inputLm.addEventListener("focus", ev => inputLm.placeholder = "");
     inputLm.addEventListener("input", OnInput);
-
+    
     restartBtnLm.addEventListener("click", ev => {
         Reset();
     });
@@ -63,11 +66,26 @@ function Initialize()
         Array.from(themeLms).find(el => el.value === value).checked = true;
         themeLm.href = value + ".css";
     }
+    if (localStorage.hasOwnProperty("Mode"))
+    {
+        const value = localStorage.getItem("Mode");
+        Array.from(modeLms).find(el => el.value === value).checked = true;
+        mode = value;
+    }
     if (localStorage.hasOwnProperty("Time"))
     {
         const value = localStorage.getItem("Time");
         Array.from(timeLms).find(el => el.value === value).checked = true;
         timeoutMax = parseInt(value);
+    }
+
+    if (mode === "Float")
+    {
+        MakeInputFloat();
+    }
+    if (mode === "Train")
+    {
+        MakeBoardOneline();
     }
 }
 
@@ -79,6 +97,7 @@ function Reset()
     indexCounter = 0;
     charCounter = 0;
     correctCharCounter = 0;
+    wrongCharCounter = 0;
     wordCounter = 0;
     correntWordCounter = 0;
     beginPoint = 0;
@@ -91,12 +110,15 @@ function Reset()
     scoreBoxLm.hidden = true;
     typeBoxLm.hidden = false;
 
-    elements[indexCounter].scrollIntoView({
-        block: "start",
-        inline: "start"
-    });
+    ScrollToLm(boardLm, elements[indexCounter], 0);
 
     inputLm.focus();
+    elements[indexCounter].classList.add("Active");
+
+    if (mode == "Float")
+    {
+        MoveInput();
+    }
 }
 
 function Start()
@@ -112,9 +134,9 @@ function Finish()
 {
     let accr = 0;
 
-    if (charCounter > 0) 
+    if (charCounter > 0 && wrongCharCounter <= correctCharCounter)
     {
-        accr = correctCharCounter / charCounter * 100;
+        accr = (correctCharCounter - wrongCharCounter) / charCounter * 100;
     }
 
     wpmLm.textContent = CalculateWpm().toFixed(1);
@@ -129,6 +151,7 @@ function Finish()
     clearInterval(intervalId);
     typeBoxLm.hidden = true;
     scoreBoxLm.hidden = false;
+    running = false;
 }
 
 function OnTick()
@@ -163,48 +186,72 @@ function OnInput(ev)
         Start();
     }
 
+    elements[indexCounter].className = "Word";
+
+
     if (ev.data !== " ")
     {
-        const cutted = elements[indexCounter].textContent.slice(0, inputLm.value.length);
-        if (inputLm.value !== cutted)
+        const tx = elements[indexCounter].textContent;
+        const rx = inputLm.value;
+        let matched = true;
+        let i = 0;
+        for (; i < tx.length && i < rx.length; ++i)
         {
-            elements[indexCounter].classList = ["ActiveWrong"];
+            if (tx[i] !== rx[i])
+            {
+                matched = false;
+                break;
+            }
         }
-        else
+        if (matched && rx.length <= i)
         {
-            elements[indexCounter].classList = ["Active"];
+            elements[indexCounter].classList.add("Active");
+            if (mode == "Float") 
+            {
+                inputLm.classList = "Active";
+            }
+        } 
+        else 
+        {
+            elements[indexCounter].classList.add("ActiveWrong");
+            if (mode == "Float") 
+            {
+                inputLm.classList = "ActiveWrong";
+            }
+
+            ++wrongCharCounter;
         }
         prevTypedWord = inputLm.value;
     }
     else
     {
         if (indexCounter + wordAboutGen > elements.length)
-        {
+        { 
             Generate(wordScaleGen);
         }
 
-        elements[indexCounter].scrollIntoView({
-            behavior: "smooth",
-            block: "start",
-            inline: "start"
-        });
-
         if (prevTypedWord === elements[indexCounter].textContent)
         {
-            elements[indexCounter].classList = ["Typed"];
+            elements[indexCounter].classList.add("Typed");
             correctCharCounter += inputLm.value.length;
             ++correntWordCounter;
         }
         else
         {
-            elements[indexCounter].classList = ["TypedWrong"];
+            elements[indexCounter].classList.add("TypedWrong");
         }
 
         charCounter += inputLm.value.length;
         ++wordCounter;
         ++indexCounter;
         inputLm.value = "";
-        elements[indexCounter].classList = ["Active"];
+        elements[indexCounter].classList.add("Active");
+        if (mode == "Float") 
+        {
+            inputLm.classList = "Active";
+        }
+
+        ScrollToLm(boardLm, elements[indexCounter], 0.3);
     }
 }
 
@@ -214,11 +261,9 @@ function Generate(n)
     {
         const value = words[Math.floor(Math.random() * words.length)];
         const word = document.createElement("span");
-        const space = document.createElement("span");
         word.textContent = value;
-        space.textContent = " ";
+        word.classList.add("Word");
         boardLm.appendChild(word);
-        boardLm.appendChild(space);
 
         elements.push(word);
     };
@@ -234,12 +279,137 @@ function OnSaveSettings()
 {
     const formTheme = Array.from(themeLms).find(el => el.checked).value;
     const formTime = Array.from(timeLms).find(el => el.checked).value;
-
+    mode = Array.from(modeLms).find(el => el.checked).value;
     timeoutMax = parseInt(formTime);
     themeLm.href = formTheme + ".css";
 
-    localStorage.setItem("Time", formTime);
+    if (mode == "Float")
+    {
+        MakeInputFloat();
+        MoveInput();
+    }
+    else
+    {
+        MakeInputDrown();
+    }
+
+    if (mode == "Train")
+    {
+        MakeBoardOneline();
+    }
+    else
+    {
+        MakeBoardMultiline();
+    }
+
     localStorage.setItem("Theme", formTheme);
+    localStorage.setItem("Mode", mode);
+    localStorage.setItem("Time", formTime);
+
+    ScrollToLm(boardLm, elements[indexCounter], 0);
+
+    if (running)
+    {
+        Reset();
+    }
+}
+
+function MakeInputFloat()
+{
+    inputLm.style.position = "absolute";
+    inputLm.style.width = "160px";
+    inputLm.className = "Active";
+}
+function MakeInputDrown()
+{
+    inputLm.style.position = "";
+    inputLm.style.width = "100%";
+    inputLm.className = '';
+}
+function MoveInput()
+{
+    const inputRect = inputLm.getBoundingClientRect();
+    const boardRect = boardLm.getBoundingClientRect();
+    const elementRect = elements[indexCounter].getBoundingClientRect();
+
+    if (elementRect.x + inputRect.width > boardRect.x + boardRect.width)
+    {
+        inputLm.style.left = (boardRect.x + boardRect.width - inputRect.width) + "px";
+    }
+    else
+    {
+        inputLm.style.left = elementRect.x + "px";
+    }
+    inputLm.style.top = (elementRect.y + elementRect.height + 2) + "px";
+}
+function MakeBoardOneline()
+{
+    boardLm.style.whiteSpace = "nowrap";
+    boardLm.style.height = "auto";
+    boardLm.style.fontSize = "34px";
+}
+function MakeBoardMultiline()
+{
+    boardLm.style.whiteSpace = "";
+    boardLm.style.height = "130px";
+    boardLm.style.fontSize = "28px";
+}
+
+function ScrollToLm(container, element, duration)
+{
+    const containerRect = container.getBoundingClientRect();
+    const elementRect = element.getBoundingClientRect();
+    const position = {
+        x: elementRect.left - containerRect.left + container.scrollLeft,
+        y: elementRect.top - containerRect.top + container.scrollTop,
+    };
+
+    ScrollTo(container, position, duration);
+}
+
+    
+function ScrollTo(element, to, duration) 
+{
+    let start = {
+        x: element.scrollLeft,
+        y: element.scrollTop
+    };
+    let change = {
+        x: to.x - start.x,
+        y: to.y - start.y
+    };
+    let then = performance.now();
+    let now, elapsed, dx;
+
+    if (duration == 0)
+    {
+        element.scrollLeft = start.x + change.x;
+        element.scrollTop = start.y + change.y;
+        return;
+    }
+
+    const EaseInOut = dx => dx < 0.5 ? 2 * dx * dx : -1 + (4 - 2 * dx) * dx;
+
+    const Animate = () => {
+        now = performance.now();
+        elapsed = (now - then) / 1000;
+        dx = (elapsed/duration);
+
+        const scale = EaseInOut(dx);
+
+        element.scrollLeft = start.x + change.x * scale;
+        element.scrollTop = start.y + change.y * scale;
+
+        if (mode == "Float")
+        {
+            MoveInput();
+        }
+
+        if (dx < 1)
+            requestAnimationFrame(Animate);
+    };
+
+    Animate();
 }
 
 Initialize();
