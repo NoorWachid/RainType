@@ -18,6 +18,8 @@ footer > .Content
 {
     display: none;
 
+    max-width: 800px;
+    margin: 0 auto;
     padding: 10px 15px;
     font-size: 16px;
 }
