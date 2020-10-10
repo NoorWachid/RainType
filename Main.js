@@ -126,7 +126,7 @@ function Start()
     timeout = timeoutMax;
     OnTick();
     intervalId = setInterval(OnTick, 1000);
-    beginPoint = Date.now();
+    beginPoint = performance.now();
     infoLm.hidden = false;
 }
 
@@ -271,7 +271,7 @@ function Generate(n)
 
 function CalculateWpm()
 {
-    const timeSpent = Date.now() - beginPoint;
+    const timeSpent = performance.now() - beginPoint;
     return (correctCharCounter / 5) / (timeSpent / 60e3);
 }
 
@@ -370,15 +370,15 @@ function ScrollToLm(container, element, duration)
     
 function ScrollTo(element, to, duration) 
 {
-    let start = {
+    const start = {
         x: element.scrollLeft,
         y: element.scrollTop
     };
-    let change = {
+    const change = {
         x: to.x - start.x,
         y: to.y - start.y
     };
-    let then = performance.now();
+    const then = performance.now();
     let now, elapsed, dx;
 
     if (duration == 0)
