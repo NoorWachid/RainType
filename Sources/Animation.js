@@ -68,15 +68,15 @@ function MoveHighlighter(toNode, duration = 0)
 
     if (duration == 0)
     {
-        Highlighter.style.left   = GetToRect().x + 'px';
-        Highlighter.style.top    = GetToRect().y + 'px';
+        Highlighter.style.left   = window.pageXOffset + GetToRect().x + 'px';
+        Highlighter.style.top    = window.pageYOffset + GetToRect().y + 'px';
         Highlighter.style.width  = GetToRect().width + 'px';
         Highlighter.style.height = GetToRect().height + 'px';
 
         if (setting.mode.selected === 1)
         {
-            Input.style.left = GetToRect().x + 'px';
-            Input.style.top  = GetToRect().y + GetToRect().height + 2 + 'px';
+            Input.style.left = GetToRect().x + window.pageXOffset + 'px';
+            Input.style.top  = GetToRect().y + window.pageYOffset + GetToRect().height + 2 + 'px';
         }
         return;
     }

@@ -33,6 +33,7 @@ function Initialize()
     Board.hidden = false;
 
     CurrentWord.style.top = '-100px';
+    MoveHighlighter(CurrentWord);
 
     document.body.addEventListener('resize', ev => {
         MoveHighlighter(CurrentWord);
@@ -44,6 +45,7 @@ function Initialize()
             MoveHighlighter(CurrentWord);
         }
     });
+
     observer.observe(document.body);
 
     Input.addEventListener('input', InputHandler);
@@ -427,6 +429,8 @@ function UpdateMode()
     {
         RemoveClassNode(Input, 'float');
     }
+
+    MoveHighlighter(CurrentWord);
 }
 
 function UpdateTheme()
