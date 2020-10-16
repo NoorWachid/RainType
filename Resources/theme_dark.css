@@ -4,7 +4,7 @@ body {
 }
 
 footer {
-    background-color: #556;
+    background-color: #76767d;
     color: #ddd;
 }
 
@@ -13,13 +13,13 @@ a {
 }
 
 button {
-    border-color: #556;
-    background-color: #556;
-    color: #dedede;
+    border-color: #76767d;
+    background-color: #76767d;
+    color: #ededed;
 }
 
 button.active {
-    border-color: #889;
+    border-color: #bfbfcc;
 }
 
 .word {
@@ -35,7 +35,7 @@ button.active {
 
 .input,
 .highlighter {
-    background-color: #667;
+    background-color: #6b6b73;
     color: #fff;
 }
 .input.float.wrong,
