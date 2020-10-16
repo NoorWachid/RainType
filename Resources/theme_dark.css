@@ -5,11 +5,11 @@ body {
 
 footer {
     background-color: #555;
-    color: #888;
+    color: #ddd;
 }
 
 a {
-    color: #666;
+    color: #fff;
 }
 
 button {
@@ -19,7 +19,7 @@ button {
 }
 
 button.active {
-    border-color: #888;
+    border-color: #889;
 }
 
 .word {
