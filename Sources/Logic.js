@@ -168,8 +168,10 @@ async function FetchWordList()
 
         RestartHandler();
     }
-
-    WaitScreen.textContent = 'Failed to fetch data';
+    else
+    {
+        WaitScreen.textContent = 'Failed to fetch data';
+    }
 }
 
 function PushWordList(n)
