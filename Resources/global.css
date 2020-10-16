@@ -129,9 +129,13 @@ footer .content,
 .score .title {
     font-size: 28px;
 }
-.score .title {
+.score .subtitle {
     font-size: 22px;
 }
 .setting-container {
     margin-bottom: 10px;
+}
+.setting-category,
+.button-container {
+    margin-bottom: 3px;
 }

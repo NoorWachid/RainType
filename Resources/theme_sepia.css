@@ -22,9 +22,6 @@ button.active {
     background-color: #EEA594;
 }
 
-.word {
-    color: #666;
-}
 .word.active {
     color: #F4F3DB;
 }
@@ -35,10 +32,6 @@ button.active {
 .input {
     background-color: #CEE5D0;
     color: inherit;
-}
-
-.info {
-    color: #333;
 }
 
 .highlighter,
