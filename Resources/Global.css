@@ -1,0 +1,123 @@
+*,
+*::before,
+*::after {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+    color: #111;
+    font-size: 18px;
+}
+
+main {
+    flex: 1;
+}
+
+footer {
+    padding: 10px 15px;
+}
+
+button {
+    display: inline-block;
+    padding: 5px 15px;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    border-width: 2px;
+    border-style: solid;
+    border-color: #ddd;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button.active {
+    color: blue;
+}
+
+.setting-option {
+    font-size: 14px;
+}
+
+.word-list {
+    margin-bottom: 10px;
+    font-size: 26px;
+}
+.word-list.classic,
+.word-list.float {
+    overflow-y: hidden;
+    height: 120px;
+}
+.word-list.train {
+    overflow-x: hidden;
+    white-space: nowrap;
+}
+
+.word {
+    display: inline-block;
+    padding: 2px 5px;
+    color: #555;
+}
+.word.active,
+.word.typed{
+    color: #111;
+}
+.word.active.wrong,
+.word.typed.wrong {
+    color: red;
+}
+
+
+.board,
+.score,
+.setting-container {
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.board {
+    margin-top: 50px;
+    margin-bottom: 20px;
+}
+
+.input,
+.info {
+    display: inline-block;
+}
+
+.input {
+    position: relative;
+    background-color: #eee;
+    border: 0;
+    margin-right: 15px;
+    padding: 2px 5px;
+    font-size: 24px;
+}
+
+.input.float {
+    position: absolute;
+}
+
+.info {
+    color: #333;
+}
+
+.highlighter {
+    z-index: -1;
+    position: absolute;
+    display: inline-block;
+    background-color: #eee;
+    width: 10px;
+    height: 10px;
+}
+
+.score {
+    margin-bottom: 20px;
+}
+.setting-container {
+    margin-bottom: 10px;
+}

@@ -21,6 +21,22 @@ const themeLms = document.getElementsByName("Theme");
 const modeLms = document.getElementsByName("Mode");
 const timeLms = document.getElementsByName("Time");
 
+const languages = ["English", "Indonesian"];
+const languageLm = document.getElementById("Language");
+for (let i = 0; i < languages.length; ++i)
+{
+    const checkbox = document.createElement("input");
+    const label = document.createElement("label");
+    const id = "Language" + i;
+    checkbox.type = "radio";
+    checkbox.name = id;
+    label.id = id;
+    label.textContent = languages[i];
+    languageLm.appendChild(checkbox);
+    languageLm.appendChild(label);
+}
+
+const languageLms = document.getElementsByName("Language");
 
 let indexCounter = 0;
 let charCounter = 0;
@@ -32,13 +48,18 @@ let wordMin = 110;
 let wordAboutGen = 20;
 let wordScaleGen = 50;
 let running = false;
+let ready = false;
 let timeoutMax = 60;
 let timeout = 0;
 let intervalId = 0;
 let beginPoint = 0;
-let elements = [];
+let words = [];
 let prevTypedWord = "";
 let mode = "Scroll";
+let language = "en_ga";
+let level = 300;
+
+let data = [];
 
 function Initialize()
 {
@@ -64,7 +85,7 @@ function Initialize()
     {
         const value = localStorage.getItem("Theme");
         Array.from(themeLms).find(el => el.value === value).checked = true;
-        themeLm.href = value + ".css";
+        themeLm.href = "Resources/" + value + ".css";
     }
     if (localStorage.hasOwnProperty("Mode"))
     {
@@ -79,6 +100,8 @@ function Initialize()
         timeoutMax = parseInt(value);
     }
 
+    FetchData(language, Reset);
+
     if (mode === "Float")
     {
         MakeInputFloat();
@@ -89,35 +112,50 @@ function Initialize()
     }
 }
 
+function FetchData(language, OnReady)
+{
+    ready = false;
+    fetch("Data/" + language + ".txt")
+    .then(response => response.text())
+    .then(text => {
+        data = text.split("\n");
+        ready = true;
+        OnReady();
+    });
+}
+
 function Reset()
 {
-    boardLm.textContent = "";
-    elements = [];
-
-    indexCounter = 0;
-    charCounter = 0;
-    correctCharCounter = 0;
-    wrongCharCounter = 0;
-    wordCounter = 0;
-    correntWordCounter = 0;
-    beginPoint = 0;
-    inputLm.value = "";
-    running = false;
-
-    Generate(wordMin);
-    clearInterval(intervalId);
-    infoLm.hidden = true;
-    scoreBoxLm.hidden = true;
-    typeBoxLm.hidden = false;
-
-    ScrollToLm(boardLm, elements[indexCounter], 0);
-
-    inputLm.focus();
-    elements[indexCounter].classList.add("Active");
-
-    if (mode == "Float")
+    if (ready) 
     {
-        MoveInput();
+        boardLm.textContent = "";
+        words = [];
+
+        indexCounter = 0;
+        charCounter = 0;
+        correctCharCounter = 0;
+        wrongCharCounter = 0;
+        wordCounter = 0;
+        correntWordCounter = 0;
+        beginPoint = 0;
+        inputLm.value = "";
+        running = false;
+
+        Generate(wordMin);
+        clearInterval(intervalId);
+        infoLm.hidden = true;
+        scoreBoxLm.hidden = true;
+        typeBoxLm.hidden = false;
+
+        ScrollToLm(boardLm, words[indexCounter], 0);
+
+        inputLm.focus();
+        words[indexCounter].classList.add("Active");
+
+        if (mode == "Float")
+        {
+            MoveInput();
+        }
     }
 }
 
@@ -186,12 +224,12 @@ function OnInput(ev)
         Start();
     }
 
-    elements[indexCounter].className = "Word";
+    words[indexCounter].className = "Word";
 
 
     if (ev.data !== " ")
     {
-        const tx = elements[indexCounter].textContent;
+        const tx = words[indexCounter].textContent;
         const rx = inputLm.value;
         let matched = true;
         let i = 0;
@@ -205,7 +243,7 @@ function OnInput(ev)
         }
         if (matched && rx.length <= i)
         {
-            elements[indexCounter].classList.add("Active");
+            words[indexCounter].classList.add("Active");
             if (mode == "Float") 
             {
                 inputLm.classList = "Active";
@@ -213,7 +251,7 @@ function OnInput(ev)
         } 
         else 
         {
-            elements[indexCounter].classList.add("ActiveWrong");
+            words[indexCounter].classList.add("ActiveWrong");
             if (mode == "Float") 
             {
                 inputLm.classList = "ActiveWrong";
@@ -225,33 +263,33 @@ function OnInput(ev)
     }
     else
     {
-        if (indexCounter + wordAboutGen > elements.length)
+        if (indexCounter + wordAboutGen > words.length)
         { 
             Generate(wordScaleGen);
         }
 
-        if (prevTypedWord === elements[indexCounter].textContent)
+        if (prevTypedWord === words[indexCounter].textContent)
         {
-            elements[indexCounter].classList.add("Typed");
+            words[indexCounter].classList.add("Typed");
             correctCharCounter += inputLm.value.length;
             ++correntWordCounter;
         }
         else
         {
-            elements[indexCounter].classList.add("TypedWrong");
+            words[indexCounter].classList.add("TypedWrong");
         }
 
         charCounter += inputLm.value.length;
         ++wordCounter;
         ++indexCounter;
         inputLm.value = "";
-        elements[indexCounter].classList.add("Active");
+        words[indexCounter].classList.add("Active");
         if (mode == "Float") 
         {
             inputLm.classList = "Active";
         }
 
-        ScrollToLm(boardLm, elements[indexCounter], 0.3);
+        ScrollToLm(boardLm, words[indexCounter], 0.3);
     }
 }
 
@@ -259,13 +297,13 @@ function Generate(n)
 {
     for (let i = 0; i < n; ++i)
     {
-        const value = words[Math.floor(Math.random() * words.length)];
+        const value = data[Math.floor(Math.random() * level)];
         const word = document.createElement("span");
         word.textContent = value;
         word.classList.add("Word");
         boardLm.appendChild(word);
 
-        elements.push(word);
+        words.push(word);
     };
 }
 
@@ -281,7 +319,7 @@ function OnSaveSettings()
     const formTime = Array.from(timeLms).find(el => el.checked).value;
     mode = Array.from(modeLms).find(el => el.checked).value;
     timeoutMax = parseInt(formTime);
-    themeLm.href = formTheme + ".css";
+    themeLm.href = "Resources/" + formTheme + ".css";
 
     if (mode == "Float")
     {
@@ -306,7 +344,7 @@ function OnSaveSettings()
     localStorage.setItem("Mode", mode);
     localStorage.setItem("Time", formTime);
 
-    ScrollToLm(boardLm, elements[indexCounter], 0);
+    ScrollToLm(boardLm, words[indexCounter], 0);
 
     if (running)
     {
@@ -330,17 +368,17 @@ function MoveInput()
 {
     const inputRect = inputLm.getBoundingClientRect();
     const boardRect = boardLm.getBoundingClientRect();
-    const elementRect = elements[indexCounter].getBoundingClientRect();
+    const wordRect = elements[indexCounter].getBoundingClientRect();
 
-    if (elementRect.x + inputRect.width > boardRect.x + boardRect.width)
+    if (wordRect.x + inputRect.width > boardRect.x + boardRect.width)
     {
         inputLm.style.left = (boardRect.x + boardRect.width - inputRect.width) + "px";
     }
     else
     {
-        inputLm.style.left = elementRect.x + "px";
+        inputLm.style.left = wordRect.x + "px";
     }
-    inputLm.style.top = (elementRect.y + elementRect.height + 2) + "px";
+    inputLm.style.top = (wordRect.y + elementRect.height + 2) + "px";
 }
 function MakeBoardOneline()
 {
@@ -358,21 +396,21 @@ function MakeBoardMultiline()
 function ScrollToLm(container, element, duration)
 {
     const containerRect = container.getBoundingClientRect();
-    const elementRect = element.getBoundingClientRect();
+    const wordRect = element.getBoundingClientRect();
     const position = {
-        x: elementRect.left - containerRect.left + container.scrollLeft,
-        y: elementRect.top - containerRect.top + container.scrollTop,
+        x: wordRect.left - containerRect.left + container.scrollLeft,
+        y: wordRect.top - containerRect.top + container.scrollTop,
     };
 
     ScrollTo(container, position, duration);
 }
 
     
-function ScrollTo(element, to, duration) 
+function ScrollTo(word, to, duration) 
 {
     const start = {
-        x: element.scrollLeft,
-        y: element.scrollTop
+        x: word.scrollLeft,
+        y: word.scrollTop
     };
     const change = {
         x: to.x - start.x,
@@ -383,8 +421,8 @@ function ScrollTo(element, to, duration)
 
     if (duration == 0)
     {
-        element.scrollLeft = start.x + change.x;
-        element.scrollTop = start.y + change.y;
+        word.scrollLeft = start.x + change.x;
+        word.scrollTop = start.y + change.y;
         return;
     }
 
@@ -397,8 +435,8 @@ function ScrollTo(element, to, duration)
 
         const scale = EaseInOut(dx);
 
-        element.scrollLeft = start.x + change.x * scale;
-        element.scrollTop = start.y + change.y * scale;
+        word.scrollLeft = start.x + change.x * scale;
+        word.scrollTop = start.y + change.y * scale;
 
         if (mode == "Float")
         {
