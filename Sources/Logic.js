@@ -268,6 +268,12 @@ function MoveToNextWord(input)
 
 function RestartHandler()
 {
+    if (isTyping)
+    {
+        isTyping = false;
+        clearInterval(intervalId);
+    }
+
     Input.value = '';
     Input.disabled = false;
     isTyping = false;
