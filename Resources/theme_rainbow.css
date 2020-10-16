@@ -1,0 +1,47 @@
+body {
+    background-color: #FEFEFE;
+    color: #347ABA;
+}
+
+footer {
+    background-color: #E573D9;
+    color: #FEFEFE;
+}
+
+a {
+    color: #FEFEFE;
+}
+
+button {
+    border-color: #FABF4F;
+    background-color: #FABF4F;
+    color: #FEFEFE;
+}
+
+button.active {
+    border-color: #ED88BA;
+    background-color: #ED88BA;
+}
+
+.word.active {
+    color: #F4F3DB;
+}
+.word.typed.wrong {
+    color: #EA5FA3;
+}
+
+.input {
+    background-color: #56CACC;
+    color: #FEFEFE;
+}
+
+.highlighter {
+    background-color: #747ACA;
+    color: #FEFEFE;
+}
+
+.word.active.wrong,
+.highlighter.wrong,
+.input.float.wrong {
+    background-color: #EA5FA3;
+}

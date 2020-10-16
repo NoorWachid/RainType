@@ -4,7 +4,8 @@ const setting = {
         options: [
             { value: 'theme_light.css', text: 'Light', alternate: '' }, 
             { value: 'theme_dark.css', text: 'Dark', alternate: '' },
-            { value: 'theme_sepia.css', text: 'Sepia', alternate: '' }
+            { value: 'theme_sepia.css', text: 'Sepia', alternate: '' },
+            { value: 'theme_rainbow.css', text: 'Rainbow', alternate: '' }
         ]
     }, 
     mode: {
