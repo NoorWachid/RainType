@@ -46,7 +46,8 @@ button {
     font-size: 14px;
 }
 
-.word-list {
+.word-list,
+.wait-screen {
     margin-bottom: 10px;
     font-size: 26px;
 }
