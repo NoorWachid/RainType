@@ -4,7 +4,7 @@ body {
 }
 
 footer {
-    background-color: #555;
+    background-color: #556;
     color: #ddd;
 }
 
@@ -13,8 +13,8 @@ a {
 }
 
 button {
-    border-color: #555;
-    background-color: #555;
+    border-color: #556;
+    background-color: #556;
     color: #dedede;
 }
 
@@ -33,19 +33,16 @@ button.active {
     color: #f77;
 }
 
-.input {
-    background-color: #666;
+.input,
+.highlighter {
+    background-color: #667;
     color: #fff;
 }
 .input.float.wrong,
 .highlighter.wrong {
-    background-color: #f55;
+    background-color: #f35;
 }
 
 .info {
     color: #eee;
-}
-
-.highlighter {
-    background-color: #666;
 }
