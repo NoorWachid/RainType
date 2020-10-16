@@ -57,9 +57,10 @@ function ScrollTo(node, to, duration = 0)
     Animate();
 }
 
-function MorphNode(fromNode, toNode, duration = 0)
+function MoveHighlighter(toNode, duration = 0)
 {
-    fromRect = fromNode.getBoundingClientRect();
+    const highlighterRect = Highlighter.getBoundingClientRect();
+    const inputRect = Input.getBoundingClientRect();
     const GetToRect = () => toNode.getBoundingClientRect();
 
     const beginTimePoint = performance.now();
@@ -67,10 +68,16 @@ function MorphNode(fromNode, toNode, duration = 0)
 
     if (duration == 0)
     {
-        fromNode.style.left   = GetToRect().x + 'px';
-        fromNode.style.top    = GetToRect().y + 'px';
-        fromNode.style.width  = GetToRect().width + 'px';
-        fromNode.style.height = GetToRect().height + 'px';
+        Highlighter.style.left   = GetToRect().x + 'px';
+        Highlighter.style.top    = GetToRect().y + 'px';
+        Highlighter.style.width  = GetToRect().width + 'px';
+        Highlighter.style.height = GetToRect().height + 'px';
+
+        if (setting.mode.selected === 1)
+        {
+            Input.style.left = GetToRect().x + 'px';
+            Input.style.top  = GetToRect().y + GetToRect().height + 2 + 'px';
+        }
         return;
     }
 
@@ -81,20 +88,23 @@ function MorphNode(fromNode, toNode, duration = 0)
 
         const scale = EaseInOut(dx);
 
-        fromNode.style.left   = Interpolate(fromRect.x, GetToRect().x, scale) + 'px';
-        fromNode.style.top    = Interpolate(fromRect.y, GetToRect().y, scale) + 'px';
-        fromNode.style.width  = Interpolate(fromRect.width, GetToRect().width, scale) + 'px';
-        fromNode.style.height = Interpolate(fromRect.height, GetToRect().height, scale) + 'px';
+        Highlighter.style.left   = Interpolate(highlighterRect.x, GetToRect().x, scale) + 'px';
+        Highlighter.style.top    = Interpolate(highlighterRect.y, GetToRect().y, scale) + 'px';
+        Highlighter.style.width  = Interpolate(highlighterRect.width, GetToRect().width, scale) + 'px';
+        Highlighter.style.height = Interpolate(highlighterRect.height, GetToRect().height, scale) + 'px';
+
+        if (setting.mode.selected === 1)
+        {
+            Input.style.left = Interpolate(highlighterRect.x, GetToRect().x, scale) + 'px';
+            Input.style.top  = Interpolate(
+                highlighterRect.y + highlighterRect.height,
+                GetToRect().y + GetToRect().height, scale
+            ) + 2 + 'px';
+        }
 
         if (dx < 1)
             requestAnimationFrame(Animate);
     };
 
     Animate();
-}
-
-function MoveNode(node, to, duration = 0)
-{
-    node.style.left = to.x + 'px';
-    node.style.top = to.y + 'px';
 }

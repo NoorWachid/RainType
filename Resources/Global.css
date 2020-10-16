@@ -11,15 +11,31 @@ body {
     min-height: 100vh;
     flex-direction: column;
     color: #111;
+    font-family: "Noto Sans", "Segoe UI", "Arial", sans-serif;
     font-size: 18px;
 }
 
 main {
     flex: 1;
+    padding: 10px;
 }
 
 footer {
-    padding: 10px 15px;
+    font-size: 14px;
+    padding: 20px 10px;
+    color: #888;
+    background-color: #eee;
+}
+footer .content {
+    display: none;
+    transition: display 1s, height 1s;
+}
+footer:hover .content {
+    display: block;
+}
+
+a {
+    color: #666;
 }
 
 button {
@@ -39,6 +55,7 @@ button.active {
 }
 
 .setting-option {
+    padding: 3px 7px;
     font-size: 14px;
 }
 
@@ -59,7 +76,7 @@ button.active {
 .word {
     display: inline-block;
     padding: 2px 5px;
-    color: #555;
+    color: #666;
 }
 .word.active,
 .word.typed{
@@ -71,6 +88,7 @@ button.active {
 }
 
 
+footer .content,
 .board,
 .score,
 .setting-container {
@@ -87,19 +105,21 @@ button.active {
 .input,
 .info {
     display: inline-block;
+    padding: 5px;
 }
 
 .input {
-    position: relative;
     background-color: #eee;
     border: 0;
-    margin-right: 15px;
+    margin-right: 10px;
     padding: 2px 5px;
     font-size: 24px;
+    max-width: 400px;
 }
 
 .input.float {
     position: absolute;
+    max-width: 200px;
 }
 
 .info {

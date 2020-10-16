@@ -1,6 +1,7 @@
 let wordList = [];
 let wordListReady = false;
 let wordListSuccess = false;
+let currentWordNode = document.createElement('span');
 
 const initialLength = 120;
 const expantionLength = 50;
@@ -27,6 +28,18 @@ let previousLanguage = setting.language.selected;
 function Initialize()
 {
     Setting.hidden = true;
+
+    document.body.addEventListener('resize', ev => {
+        MoveHighlighter(currentWordNode);
+    });
+
+    const observer = new ResizeObserver(entries => {
+        for (entry of entries)
+        {
+            MoveHighlighter(currentWordNode);
+        }
+    });
+    observer.observe(document.body);
 
     Input.addEventListener('input', InputHandler);
 
@@ -190,7 +203,8 @@ function InputHandler(input)
 
 function CheckCurrentWord(input) 
 {
-    const currentWordNode = WordList.children[indexCounter];
+    currentWordNode = WordList.children[indexCounter];
+
     const currentWord = currentWordNode.textContent;
     const currentTypedWord = Input.value;
 
@@ -223,7 +237,8 @@ function CheckCurrentWord(input)
 
 function MoveToNextWord(input) 
 {
-    const currentWordNode = WordList.children[indexCounter];
+    currentWordNode = WordList.children[indexCounter];
+
     const currentWord = currentWordNode.textContent;
     const currentTypedWord = Input.value.slice(0, -1);
 
@@ -243,10 +258,10 @@ function MoveToNextWord(input)
     charCounter += Input.value.length;
     ++wordCounter;
     ++indexCounter;
-    const nextWordNode = WordList.children[indexCounter];
-    nextWordNode.classList.add('active');
-    ScrollToNode(WordList, nextWordNode, 0.3);
-    UpdateHighlighterNode(nextWordNode, 0.3);
+    currentWordNode = WordList.children[indexCounter];
+    currentWordNode.classList.add('active');
+    ScrollToNode(WordList, currentWordNode, 0.3);
+    MoveHighlighter(currentWordNode, 0.4);
     Input.value = '';
 }
 
@@ -271,8 +286,10 @@ function RestartHandler()
     WordList.textContent = '';
 
     PushWordList(initialLength);
+    currentWordNode = WordList.children[0];
     ScrollTo(WordList, { x: 0, y: 0 });
-    UpdateHighlighterNode(WordList.children[0]);
+    AddClassNode(currentWordNode, 'active');
+    MoveHighlighter(currentWordNode);
 }
 
 function SettingHandler()
@@ -301,6 +318,11 @@ function SaveSettingHandler()
         {
             RemoveClassNode(Highlighter, 'float');
         }
+    }
+
+    if (previousLanguage !== setting.mode.selected)
+    {
+        FetchWordList();
     }
 
     previousTheme = setting.theme.selected;
@@ -376,11 +398,6 @@ function UpdateMode()
     {
         RemoveClassNode(Input, 'float');
     }
-}
-
-function UpdateHighlighterNode(targetNode, duration = 0)
-{
-    MorphNode(Highlighter, targetNode, duration);
 }
 
 Initialize();

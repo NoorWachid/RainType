@@ -100,13 +100,15 @@ for (const key in setting)
 
 Setting.appendChild(SaveSettingButton);
 
-const Footer = CreateNode('footer', { innerHTML: `
+const Footer = CreateNode('footer');
+const FooterContent = CreateNode('div', { className: 'content', innerHTML: `
     Crafted with love by <a href="https://github.com/NoorWachid">Noor Wachid</a> ·
     If you find it is useful and you are a nice person please consider to 
     <a href="https://paypal.me/MrWachid"><b>donate</b></a> ·
     Have a nice day! ·
     © TypeIt 2020 
 `});
+Footer.appendChild(FooterContent);
 
 AppendNodes(document.body, [
     AppendNodes(Main, [
