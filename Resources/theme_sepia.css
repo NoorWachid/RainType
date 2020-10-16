@@ -1,0 +1,57 @@
+body {
+    background-color: #F3F0D7;
+    color: #554F4E;
+}
+
+footer {
+    background-color: #f4f4f4;
+    color: #888;
+}
+
+a {
+    color: #666;
+}
+
+button {
+    border-color: #f5f5f5;
+    background-color: #f5f5f5;
+    color: #555;
+}
+
+button.active {
+    border-color: #ddd;
+}
+
+.word {
+    color: #666;
+}
+.word.active {
+    color: #F4F3DB;
+}
+.word.typed {
+    color: #111;
+}
+.word.typed.wrong {
+    color: #A88354;
+}
+
+.input {
+    background-color: #eee;
+    color: #111;
+}
+
+.info {
+    color: #333;
+}
+
+.highlighter,
+.input.float {
+    background-color: #3FAB9B;
+    color: #F4F3DB;
+}
+
+.word.active.wrong,
+.highlighter.wrong,
+.input.float.wrong {
+    background-color: #D8B384;
+}

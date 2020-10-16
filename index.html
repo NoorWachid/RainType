@@ -3,85 +3,16 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-    <title>TypeIt - Typing Test</title>
-    <link rel="stylesheet" href="Resources/Base.css">
-    <link rel="stylesheet" href="Resources/Light.css" id="Theme">
-    <link rel="icon" type="image/png" href="Resources/Icon.png">
+    <title>TypeIt - Dev</title>
+    <link rel="stylesheet" href="Resources/global.css">
+    <link rel="stylesheet" href="Resources/theme_light.css" id="theme">
+    <link rel="icon" type="image/png" href="Resources/icon.png">
 </head>
 <body>
-    <div id="MainBox">
-        <div id="TypeBox">
-            <div id="Board"></div>
-            <input id="Input" type="text" autofocus>
-            <div id="Info">
-                <span id="Timer"></span> &mdash;
-                <span id="CurrentWpm"></span>
-            </div>
-        </div>
-
-        <div id="ScoreBox">
-            <span id="Wpm"></span> WPM &mdash;
-            <span id="Accuracy"></span>% accuracy
-            <div id="WordDetail"></div>
-            <div id="KeystrokeDetail"></div>
-        </div>
-
-        <div class="Spacer"></div>
-        <div class="Buttons">
-            <button id="RestartBtn">Restart</button>
-            <button id="SettingsBtn">Settings</button>
-        </div>
-
-        <div id="SettingsBox">
-            <div class="Setting">
-                <input type="radio" name="Theme" value="0" id="Theme0" checked>
-                <label for="Theme0">Light</label>
-                <input type="radio" name="Theme" value="1" id="Theme1">
-                <label for="Theme1">Dark</label>
-            </div>
-            <div class="Setting">
-                <input type="radio" name="Mode" value="0" id="Mode0" checked>
-                <label for="Mode0">Scroll</label>
-                <input type="radio" name="Mode" value="1" id="Mode1">
-                <label for="Mode1">Float</label>
-                <input type="radio" name="Mode" value="2" id="Mode2">
-                <label for="Mode2">Train</label>
-            </div>
-            <div class="Setting">
-                <input type="radio" name="Time" value="30" id="Time0">
-                <label for="Time0">30s</label>
-                <input type="radio" name="Time" value="60" id="Time1" checked>
-                <label for="Time1">60s</label>
-                <input type="radio" name="Time" value="120" id="Time2">
-                <label for="Time2">2m</label>
-                <input type="radio" name="Time" value="300" id="Time3">
-                <label for="Time3">5m</label>
-            </div>
-            <div class="Setting">
-                <input type="radio" name="Word" value="300" id="Word0">
-                <label for="Word0">Basic</label>
-                <input type="radio" name="Word" value="1000" id="Word1">
-                <label for="Word1">Advanced</label>
-            </div>
-            <div class="Setting" id="Language">
-            </div>
-            <button id="SaveBtn">Save</button>
-        </div>
-    </div>
-
-    <footer>
-        <div class="Border"></div>
-        <div class="Content">
-            Crafted with love by <a href="https://github.com/NoorWachid">Noor Wachid</a>
-            &middot;
-            If you find it is useful and you are a nice person please consider to 
-            <a href="https://paypal.me/MrWachid"><b>donate</b></a>
-            &middot;
-            Have a nice day!
-            &middot;
-            &copy; TypeIt 2020 
-        </div>
-    </footer>
-
+    <script src="Sources/Node.js"></script>
+    <script src="Sources/Layout.js"></script>
+    <script src="Sources/Animation.js"></script>
+    <script src="Sources/Logic.js"></script>
     <script src="Sources/Main.js"></script>
 </body>
+</html>

@@ -2,8 +2,9 @@ const setting = {
     theme: {
         selected: 0,
         options: [
-            { value: 0, text: 'Light', alternate: 'Day mode' }, 
-            { value: 1, text: 'Dark', alternate: 'Night mode' }
+            { value: 'theme_light.css', text: 'Light', alternate: '' }, 
+            { value: 'theme_dark.css', text: 'Dark', alternate: '' },
+            { value: 'theme_sepia.css', text: 'Sepia', alternate: '' }
         ]
     }, 
     mode: {

@@ -1,7 +1,8 @@
 let wordList = [];
 let wordListReady = false;
 let wordListSuccess = false;
-let currentWordNode = document.createElement('span');
+
+let CurrentWord = CreateNode('div', { className: 'highlighter' });
 
 const initialLength = 120;
 const expantionLength = 50;
@@ -28,15 +29,19 @@ let previousLanguage = setting.language.selected;
 function Initialize()
 {
     Setting.hidden = true;
+    Score.hidden = true;
+    Board.hidden = false;
+
+    CurrentWord.style.top = '-100px';
 
     document.body.addEventListener('resize', ev => {
-        MoveHighlighter(currentWordNode);
+        MoveHighlighter(CurrentWord);
     });
 
     const observer = new ResizeObserver(entries => {
         for (entry of entries)
         {
-            MoveHighlighter(currentWordNode);
+            MoveHighlighter(CurrentWord);
         }
     });
     observer.observe(document.body);
@@ -54,6 +59,7 @@ function Initialize()
     SaveSettingButton.addEventListener('click', SaveSettingHandler);
 
     LoadSetting();
+    UpdateTheme();
     UpdateMode();
     CheckSelectedSettingCategory();
     FetchWordList();
@@ -73,9 +79,11 @@ function StopTyping()
     clearInterval(intervalId);
 
     Input.disabled = true;
+    Board.hidden = true;
+    Score.hidden = false;
     Score.innerHTML = `
-        <div>${GetWpm().toFixed(1)} WPM ${GetAccuracy().toFixed(1)}% Accuracy</div>
-        <div>${GetSetting('level').text} ${GetSetting('time').text}</div>
+        <div class="title">${GetWpm().toFixed(1)} WPM ${GetAccuracy().toFixed(1)}% Accuracy</div>
+        <div class="subtitle">${GetSetting('time').text} of ${GetSetting('level').alternate.toLowerCase()} in ${GetSetting('language').text}</div>
         <div>${correctWordCounter}/${wordCounter} ${wordCounter > 1 ? 'words' : 'word'}</div>
         <div>${correctCharCounter}/${charCounter} ${charCounter > 1 ? 'keystrokes' : 'keystroke'}</div>
     `;
@@ -150,7 +158,7 @@ async function FetchWordList()
     if (response.ok) 
     {
         const data = await response.text();
-        wordList = data.split('\n').slice(0, 10000);
+        wordList = data.trim().split('\n');
         wordListReady = true;
         wordListSuccess = true;
         WordList.hidden = false;
@@ -203,9 +211,9 @@ function InputHandler(input)
 
 function CheckCurrentWord(input) 
 {
-    currentWordNode = WordList.children[indexCounter];
+    CurrentWord = WordList.children[indexCounter];
 
-    const currentWord = currentWordNode.textContent;
+    const currentWord = CurrentWord.textContent;
     const currentTypedWord = Input.value;
 
     let matched = true;
@@ -223,11 +231,16 @@ function CheckCurrentWord(input)
 
     if (matched && currentTypedWord.length <= index)
     {
-        RemoveClassNode(currentWordNode, 'wrong');
+        RemoveClassNode(CurrentWord, 'wrong');
+        RemoveClassNode(Highlighter, 'wrong');
+        RemoveClassNode(Input, 'wrong');
     }
     else
     {
-        AddClassNode(currentWordNode, 'wrong');
+        AddClassNode(CurrentWord, 'wrong');
+        AddClassNode(Highlighter, 'wrong');
+        AddClassNode(Input, 'wrong');
+
         if (input.data) 
         {
             ++wrongCharCounter;
@@ -237,9 +250,9 @@ function CheckCurrentWord(input)
 
 function MoveToNextWord(input) 
 {
-    currentWordNode = WordList.children[indexCounter];
+    CurrentWord = WordList.children[indexCounter];
 
-    const currentWord = currentWordNode.textContent;
+    const currentWord = CurrentWord.textContent;
     const currentTypedWord = Input.value.slice(0, -1);
 
     if (currentWord === currentTypedWord)
@@ -249,19 +262,22 @@ function MoveToNextWord(input)
     }
     else 
     {
-        AddClassNode(currentWordNode, 'wrong');
+        AddClassNode(CurrentWord, 'wrong');
     }
 
-    RemoveClassNode(currentWordNode, 'active');
-    currentWordNode.classList.add('typed');
+    RemoveClassNode(CurrentWord, 'active');
+    RemoveClassNode(Highlighter, 'wrong');
+    RemoveClassNode(Input, 'wrong');
+
+    CurrentWord.classList.add('typed');
 
     charCounter += Input.value.length;
     ++wordCounter;
     ++indexCounter;
-    currentWordNode = WordList.children[indexCounter];
-    currentWordNode.classList.add('active');
-    ScrollToNode(WordList, currentWordNode, 0.3);
-    MoveHighlighter(currentWordNode, 0.4);
+    CurrentWord = WordList.children[indexCounter];
+    CurrentWord.classList.add('active');
+    ScrollToNode(WordList, CurrentWord, 0.3);
+    MoveHighlighter(CurrentWord, 0.4);
     Input.value = '';
 }
 
@@ -274,6 +290,8 @@ function RestartHandler()
         clearInterval(intervalId);
     }
 
+    Board.hidden = false;
+    Score.hidden = true;
     Input.value = '';
     Input.disabled = false;
     isTyping = false;
@@ -292,10 +310,10 @@ function RestartHandler()
     WordList.textContent = '';
 
     PushWordList(initialLength);
-    currentWordNode = WordList.children[0];
+    CurrentWord = WordList.children[0];
     ScrollTo(WordList, { x: 0, y: 0 });
-    AddClassNode(currentWordNode, 'active');
-    MoveHighlighter(currentWordNode);
+    AddClassNode(CurrentWord, 'active');
+    MoveHighlighter(CurrentWord);
 }
 
 function SettingHandler()
@@ -311,6 +329,11 @@ function SaveSettingHandler()
 {
     if (isTyping) {
         RestartHandler();
+    }
+
+    if (previousTheme !== setting.theme.selected)
+    {
+        UpdateTheme();
     }
 
     if (previousMode !== setting.mode.selected)
@@ -406,4 +429,8 @@ function UpdateMode()
     }
 }
 
-Initialize();
+function UpdateTheme()
+{
+    const themeNode = document.getElementById('theme');
+    themeNode.href = `Resources/${GetSetting('theme').value}`;
+}

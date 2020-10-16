@@ -1,0 +1,51 @@
+body {
+    background-color: #222;
+    color: #fff;
+}
+
+footer {
+    background-color: #555;
+    color: #888;
+}
+
+a {
+    color: #666;
+}
+
+button {
+    border-color: #555;
+    background-color: #555;
+    color: #dedede;
+}
+
+button.active {
+    border-color: #888;
+}
+
+.word {
+    color: #ddd;
+}
+.word.active,
+.word.typed {
+    color: #fff;
+}
+.word.typed.wrong {
+    color: #f77;
+}
+
+.input {
+    background-color: #666;
+    color: #fff;
+}
+.input.float.wrong,
+.highlighter.wrong {
+    background-color: #f55;
+}
+
+.info {
+    color: #eee;
+}
+
+.highlighter {
+    background-color: #666;
+}
