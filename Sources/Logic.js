@@ -303,7 +303,6 @@ function RestartHandler()
     timer = GetSetting('time').value;
     timePoint = 0;
     intervalId = 0;
-    UpdateInfo();
 
     indexCounter = 0;
     correctCharCounter = 0;
@@ -317,6 +316,7 @@ function RestartHandler()
     RemoveClassNode(CurrentWord, 'wrong');
     RemoveClassNode(Input, 'wrong');
 
+    UpdateInfo();
     PushWordList(initialLength);
     CurrentWord = WordList.children[0];
     ScrollTo(WordList, { x: 0, y: 0 });
