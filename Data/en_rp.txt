@@ -194,7 +194,7 @@ isn't
 always
 listen
 wanted
-Mr.
+Mr
 guys
 huh
 those
@@ -368,9 +368,9 @@ move
 anyone
 person
 bye
-J.
+J
 somebody
-Dr.
+Dr
 heart
 such
 miss
@@ -438,7 +438,7 @@ bit
 couple
 whoa
 either
-Mrs.
+Mrs
 feeling
 daughter
 wow
@@ -531,7 +531,7 @@ high
 ahead
 week
 wonderful
-T.
+T
 fight
 past
 cut
@@ -539,7 +539,7 @@ quite
 number
 he'll
 sick
-S.
+S
 it'll
 game
 eat
@@ -626,14 +626,14 @@ mistake
 ooh
 handle
 spend
-C.
+C
 totally
 giving
 control
 here's
 marriage
 realise
-D.
+D
 power
 president
 unless
@@ -641,7 +641,7 @@ sex
 girls
 send
 needed
-O.
+O
 taken
 died
 scared
@@ -692,7 +692,7 @@ white
 fast
 Natalie
 words
-R.
+R
 food
 none
 drive
@@ -764,7 +764,7 @@ watching
 kept
 darling
 dog
-Ms.
+Ms
 win
 air
 honour
@@ -797,7 +797,7 @@ red
 entire
 trip
 Brooke
-E.
+E
 club
 Niles
 suppose
@@ -806,7 +806,7 @@ imagine
 Todd
 fair
 caught
-B.
+B
 blame
 street
 sitting
@@ -938,7 +938,7 @@ road
 Eve
 staying
 short
-M.
+M
 beat
 sweetie
 mention
@@ -1207,7 +1207,7 @@ kick
 others
 grab
 mother's
-P.
+P
 Sharon
 discuss
 third
@@ -1276,7 +1276,7 @@ ground
 whose
 outta
 Kyle
-L.
+L
 weekend
 matters
 wrote
@@ -1377,7 +1377,7 @@ Katie
 foot
 games
 glass
-N.
+N
 Mitch
 remind
 bank
@@ -1390,7 +1390,7 @@ tree
 dare
 hardly
 that'll
-U.
+U
 interest
 steal
 princess
@@ -1437,7 +1437,7 @@ total
 crap
 crying
 Paige
-K.
+K
 belong
 lay
 partner
@@ -1620,12 +1620,12 @@ nah
 final
 Michelle
 America
-St.
+St
 results
 code
 Ned
 Bonnie
-W.
+W
 believed
 complicated
 umm
@@ -1700,7 +1700,7 @@ spoke
 quickly
 scare
 Marah
-G.
+G
 beach
 Mia
 brown
@@ -1713,7 +1713,7 @@ mentioned
 ed
 due
 passion
-Y.
+Y
 stayed
 rule
 Friday
@@ -1775,7 +1775,7 @@ Colin
 bright
 Amanda
 Fraser
-F.
+F
 babies
 army
 where'd
@@ -1847,7 +1847,7 @@ Kenny
 Bobby
 pizza
 brothers
-X.
+X
 signed
 bird
 ahh
@@ -1876,7 +1876,7 @@ colour
 heavy
 schedule
 records
-H.
+H
 dollar
 capable
 master
