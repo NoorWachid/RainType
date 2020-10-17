@@ -45,3 +45,12 @@ button.active {
 .input.float.wrong {
     background-color: #EA5FA3;
 }
+.score {
+    color: #269A9C;
+}
+.score .title {
+    color: #747ACA;
+}
+.score .subtitle {
+    color: #347ABA;
+}
