@@ -2,7 +2,7 @@ let wordList = [];
 let wordListReady = false;
 let wordListSuccess = false;
 
-let CurrentWord = CreateNode('div', { className: 'highlighter' });
+let CurrentWord = WordList;
 
 const initialLength = 120;
 const expantionLength = 50;
@@ -32,7 +32,6 @@ function Initialize()
     Score.hidden = true;
     Board.hidden = false;
 
-    CurrentWord.style.top = '-100px';
     MoveHighlighter(CurrentWord);
 
     document.body.addEventListener('resize', ev => {
