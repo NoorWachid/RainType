@@ -307,7 +307,7 @@ function RestartHandler()
     correctCharCounter = 0;
     wrongCharCounter = 0;
     charCounter = 0;
-    correctWordCounter;
+    correctWordCounter = 0;
     wordCounter = 0;
     WordList.textContent = '';
 
