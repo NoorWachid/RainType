@@ -313,6 +313,10 @@ function RestartHandler()
     wordCounter = 0;
     WordList.textContent = '';
 
+    RemoveClassNode(Highlighter, 'wrong');
+    RemoveClassNode(CurrentWord, 'wrong');
+    RemoveClassNode(Input, 'wrong');
+
     PushWordList(initialLength);
     CurrentWord = WordList.children[0];
     ScrollTo(WordList, { x: 0, y: 0 });

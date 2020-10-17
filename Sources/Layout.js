@@ -40,7 +40,9 @@ const setting = {
         options: [
             { value: 'en_ga.txt', text: 'English GA', alternate: 'American, Canadian' }, 
             { value: 'en_rp.txt', text: 'English RP', alternate: 'British, Australian' }, 
-            //{ value: 'id.txt', text: 'Indonesian', alternate: 'Indonesian' }
+            { value: 'es.txt', text: 'Spanish', alternate: '' },
+            { value: 'fr.txt', text: 'French', alternate: '' },
+            { value: 'id.txt', text: 'Indonesian', alternate: '' }
         ]
     }
 };
