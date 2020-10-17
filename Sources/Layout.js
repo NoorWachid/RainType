@@ -111,7 +111,7 @@ const FooterContent = CreateNode('div', { className: 'content', innerHTML: `
     If you find it is useful and you are a nice person please consider to 
     <a href="https://paypal.me/MrWachid"><b>donate</b></a> ·
     Have a nice day! ·
-    © TypeIt 2020 
+    © RainType 2020 
 `});
 Footer.appendChild(FooterContent);
 

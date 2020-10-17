@@ -1,10 +1,11 @@
 body {
     background-color: #FAFAFA;
-    color: #347ABA;
+    color: #333;
 }
 
 footer {
-    background-color: #E573D9;
+    background-color: #a537b7;
+    border-top: 10px solid #408dff;
     color: #FEFEFE;
 }
 
@@ -13,44 +14,46 @@ a {
 }
 
 button {
-    border-color: #FABF4F;
-    background-color: #FABF4F;
+    border-width: 0px;
+    padding: 7px 20px;
+    background-color: #40c066;
     color: #FEFEFE;
 }
 
 button.active {
-    border-color: #ED88BA;
-    background-color: #ED88BA;
+    background-color: #50a7aa;
+}
+
+.setting-category button {
+    padding: 5px 15px;
 }
 
 .word.active {
-    color: #F4F3DB;
+    color: #FFF;
 }
 .word.typed.wrong {
-    color: #EA5FA3;
+    color: #e40303;
 }
 
 .input {
-    background-color: #56CACC;
-    color: #FEFEFE;
+    background-color: #ffed50;
+    color: #333;
 }
 
 .highlighter {
-    background-color: #747ACA;
-    color: #FEFEFE;
+    background-color: #ffac20;
+    color: #333;
 }
 
 .word.active.wrong,
 .highlighter.wrong,
 .input.float.wrong {
-    background-color: #EA5FA3;
+    background-color: #f44343;
 }
 .score {
-    color: #269A9C;
-}
-.score .title {
     color: #747ACA;
 }
+.score .title,
 .score .subtitle {
-    color: #347ABA;
+    color: #333;
 }
