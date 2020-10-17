@@ -42,7 +42,8 @@ const setting = {
             { value: 'en_rp.txt', text: 'English RP', alternate: 'British, Australian' }, 
             { value: 'es.txt', text: 'Spanish', alternate: '' },
             { value: 'fr.txt', text: 'French', alternate: '' },
-            { value: 'id.txt', text: 'Indonesian', alternate: '' }
+            { value: 'id.txt', text: 'Indonesian', alternate: '' },
+            { value: '__.txt', text: '__', alternate: 'Random character' }
         ]
     }
 };

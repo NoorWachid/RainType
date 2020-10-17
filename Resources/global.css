@@ -102,6 +102,7 @@ footer .content,
 }
 
 .input {
+    transition: background-color 0.15s;
     border: 0;
     margin-right: 10px;
     padding: 2px 5px;
@@ -116,6 +117,7 @@ footer .content,
 }
 
 .highlighter {
+    transition: background-color 0.15s;
     z-index: -1;
     position: absolute;
     display: inline-block;

@@ -49,6 +49,7 @@ function Initialize()
     observer.observe(document.body);
 
     Input.addEventListener('input', InputHandler);
+    Input.focus();
 
     RestartButton.addEventListener('click', () => {
         if (wordListReady)
@@ -80,7 +81,6 @@ function StopTyping()
     isTyping = false;
     clearInterval(intervalId);
 
-    Input.disabled = true;
     Board.hidden = true;
     Score.hidden = false;
     Score.innerHTML = `
@@ -297,7 +297,7 @@ function RestartHandler()
     Board.hidden = false;
     Score.hidden = true;
     Input.value = '';
-    Input.disabled = false;
+    Input.focus();
     isTyping = false;
 
     timer = GetSetting('time').value;
