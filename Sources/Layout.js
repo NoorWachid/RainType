@@ -43,7 +43,7 @@ const setting = {
             { value: 'es.txt', text: 'Spanish', alternate: '' },
             { value: 'fr.txt', text: 'French', alternate: '' },
             { value: 'id.txt', text: 'Indonesian', alternate: '' },
-            { value: '__.txt', text: '__', alternate: 'Random character' }
+            { value: '00.txt', text: 'Gibberish', alternate: 'Random character' }
         ]
     }
 };
