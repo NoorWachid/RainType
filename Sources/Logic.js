@@ -154,6 +154,7 @@ async function FetchWordList()
     WordList.hidden = true;
     WaitScreen.hidden = false;
     WaitScreen.textContent = 'Wait...';
+    Highlighter.hidden = true;
 
     const response = await fetch(`Data/${GetSetting('language').value}`);
 
@@ -165,6 +166,7 @@ async function FetchWordList()
         wordListSuccess = true;
         WordList.hidden = false;
         WaitScreen.hidden = true;
+        Highlighter.hidden = false;
 
         RestartHandler();
     }
