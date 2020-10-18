@@ -200,10 +200,6 @@ function InputHandler(input)
 
         if (input.data === ' ')
         {
-            if (indexCounter + distanceBeforeExpansionLength > WordList.children.length)
-            {
-                PushWordList(expantionLength);
-            }
             MoveToNextWord(input);
         }
         else 
@@ -254,6 +250,11 @@ function CheckCurrentWord(input)
 
 function MoveToNextWord(input) 
 {
+    if (indexCounter + distanceBeforeExpansionLength > WordList.children.length)
+    {
+        PushWordList(expantionLength);
+    }
+
     CurrentWord = WordList.children[indexCounter];
 
     const currentWord = CurrentWord.textContent;
