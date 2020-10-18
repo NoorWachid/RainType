@@ -95,7 +95,7 @@ function StopTyping()
 
 function Tinker()
 {
-    if (timer < 0)
+    if (timer <= 0)
     {
         StopTyping();
     }
