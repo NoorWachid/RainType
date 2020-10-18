@@ -5,7 +5,7 @@ const setting = {
             { value: 'theme_light.css', text: 'Light', alternate: '' }, 
             { value: 'theme_dark.css', text: 'Dark', alternate: '' },
             { value: 'theme_sepia.css', text: 'Sepia', alternate: '' },
-            { value: 'theme_rainbow.css', text: 'Rainbow', alternate: '' }
+            { value: 'theme_neon.css', text: 'Neon', alternate: '' }
         ]
     }, 
     mode: {
@@ -19,11 +19,13 @@ const setting = {
     time: {
         selected: 0,
         options: [
-            { value: 30, text: '30s', alternate: 'Half minutes' },
-            { value: 60, text: '60s', alternate: 'A minutes' }, 
+            { value: 30, text: '30s', alternate: 'Thirty seconds' },
+            { value: 60, text: '60s', alternate: 'A minute' }, 
             { value: 120, text: '2m', alternate: 'Two minutes' }, 
             { value: 300, text: '5m', alternate: 'Five minutes' }, 
-            { value: 600, text: '10m', alternate: 'Ten minutes' }
+            { value: 600, text: '10m', alternate: 'Ten minutes' },
+            { value: 1800, text: '30m', alternate: 'Thirty minutes' },
+            { value: 3600, text: '1h', alternate: 'An hour' }
         ]
     }, 
     level: {

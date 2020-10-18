@@ -28,11 +28,10 @@ let previousLanguage = setting.language.selected;
 
 function Initialize()
 {
+    Highlighter.hidden = true;
     Setting.hidden = true;
     Score.hidden = true;
     Board.hidden = false;
-
-    MoveHighlighter(CurrentWord);
 
     document.body.addEventListener('resize', ev => {
         MoveHighlighter(CurrentWord);
@@ -72,6 +71,7 @@ function StartTyping()
     timer = GetSetting('time').value;
     beginTimePoint = performance.now();
     intervalId = setInterval(Tinker, 1000);
+    Tinker();
     UpdateInfo();
 }
 
@@ -95,12 +95,12 @@ function StopTyping()
 
 function Tinker()
 {
-    if (timer <= 0)
+    if (timer < 0)
     {
         StopTyping();
     }
-    UpdateInfo();
     --timer;
+    UpdateInfo();
 }
 
 function UpdateInfo()
@@ -109,7 +109,7 @@ function UpdateInfo()
     const minute = Math.floor(timer / 60);
     if (minute > 0)
     {
-        message += `${minute}m ${timer % 60}s`;
+        message += `${minute}m ${timer % 60}s`
     }
     else
     {
@@ -147,7 +147,6 @@ function GetSetting(key)
 
 async function FetchWordList()
 {
-    const response = await fetch(`Data/${GetSetting('language').value}`);
     wordList = [];
     wordListReady = false;
     wordListSuccess = false;
@@ -155,6 +154,8 @@ async function FetchWordList()
     WordList.hidden = true;
     WaitScreen.hidden = false;
     WaitScreen.textContent = 'Wait...';
+
+    const response = await fetch(`Data/${GetSetting('language').value}`);
 
     if (response.ok) 
     {
@@ -293,8 +294,9 @@ function RestartHandler()
         clearInterval(intervalId);
     }
 
-    Board.hidden = false;
+    Highlighter.hidden = true;
     Score.hidden = true;
+    Board.hidden = false;
     Input.value = '';
     Input.focus();
     isTyping = false;
@@ -321,6 +323,7 @@ function RestartHandler()
     ScrollTo(WordList, { x: 0, y: 0 });
     AddClassNode(CurrentWord, 'active');
     MoveHighlighter(CurrentWord);
+    Highlighter.hidden = false;
 }
 
 function SettingHandler()
@@ -341,6 +344,7 @@ function SaveSettingHandler()
     if (previousTheme !== setting.theme.selected)
     {
         UpdateTheme();
+        previousTheme = setting.theme.selected;
     }
 
     if (previousMode !== setting.mode.selected)
@@ -354,16 +358,14 @@ function SaveSettingHandler()
         {
             RemoveClassNode(Highlighter, 'float');
         }
+        previousMode = setting.mode.selected;
     }
 
     if (previousLanguage !== setting.mode.selected)
     {
         FetchWordList();
+        previousLanguage = setting.language.selected;
     }
-
-    previousTheme = setting.theme.selected;
-    previousMode = setting.mode.selected;
-    previousLanguage = setting.language.selected;
 
     SaveSetting();
 }

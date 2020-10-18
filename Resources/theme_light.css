@@ -32,7 +32,8 @@ button.active {
 .word.active.wrong,
 .word.typed.wrong,
 .input.float.wrong {
-    color: red;
+    color: #f11;
+    caret-color: #111;
 }
 
 .input {

@@ -1,0 +1,60 @@
+body {
+    background-color: #101B37;
+    background: linear-gradient(30deg, rgba(16,27,55,1) 50%, rgba(17,14,25,1) 94%); 
+    color: #FAFEFC;
+}
+
+footer {
+    background-color: #E51376;
+    box-shadow: 0px 0px 10px 0px #E51376;
+}
+
+a {
+    color: #FAFEFC;
+    text-shadow: 0px 0px 10px #FAFEFC;
+    text-decoration: none;
+}
+
+button {
+    border-width: 0px;
+    padding: 7px 15px;
+    background-color: #E51376;
+    box-shadow: 0px 0px 10px 0px #E51376;
+    color: #FAFEFC;
+    margin-right: 7px;
+    margin-bottom: 7px;
+}
+button.active {
+    background-color: #00C8EF;
+    box-shadow: 0px 0px 5px 0px #00C8EF;
+}
+
+.highlighter {
+    background-color: #00C8EF;
+    box-shadow: 0px 0px 10px 0px #00C8EF;
+}
+.highlighter.wrong,
+.input.float.wrong {
+    background-color: #E51376;
+    box-shadow: 0px 0px 10px 0px #E51376;
+}
+
+.word {
+    color: #EAEEEC;
+}
+.word.active {
+    color: #FAFEFC;
+}
+.word.typed {
+    text-shadow: 0px 0px 10px #00C8EF;
+}
+.word.typed.wrong {
+    text-shadow: none;
+    color: #EAEEEC;
+}
+
+.input {
+    box-shadow: 0px 0px 10px 0px #00C8EF;
+    background-color: #00C8EF;
+    color: #FAFEFC;
+}
