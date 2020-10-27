@@ -243,7 +243,7 @@ function CheckCurrentWord(input)
         AddClassNode(Highlighter, 'wrong');
         AddClassNode(Input, 'wrong');
 
-        if (input.data) 
+        if (input && input.data) 
         {
             ++wrongCharCounter;
         }
@@ -284,7 +284,7 @@ function MoveToNextWord(input)
     CurrentWord = WordList.children[indexCounter];
     CurrentWord.classList.add('active');
     ScrollToNode(WordList, CurrentWord, 0.3);
-    MoveHighlighter(CurrentWord, 0.4);
+    MoveHighlighter(CurrentWord, 0.3);
     Input.value = '';
 }
 
