@@ -1891,7 +1891,7 @@ immediately
 appointment
 social
 nature
-ú
+u
 deserves
 west
 Blake
@@ -4826,7 +4826,7 @@ misunderstood
 kiddo
 healing
 Franklin
-fiancée
+fiancee
 Derek
 cascade
 capeside
@@ -5160,7 +5160,7 @@ Latin
 Jeremy
 guessed
 Grace's
-fiancé
+fiance
 display
 dip
 Brooke's
@@ -6337,7 +6337,7 @@ convict
 butler
 bold
 ballet
-ñ
+n
 whatcha
 unlikely
 spiritual
@@ -9113,7 +9113,7 @@ commerce
 Chinatown
 chemicals
 Cassidy
-café
+cafe
 Baltimore
 authentic
 arraignment
@@ -9919,7 +9919,7 @@ sweeping
 stepmother
 stating
 stale
-saeñor
+saenor
 settles
 seating
 seaborn
