@@ -327,6 +327,7 @@ function RestartHandler()
     AddClassNode(CurrentWord, 'active');
     MoveHighlighter(CurrentWord);
     Highlighter.hidden = false;
+    UpdateMode();
 }
 
 function SettingHandler()
@@ -429,7 +430,9 @@ function UpdateMode()
             RemoveClassNode(WordList, className);
         }
     }
+
     AddClassNode(WordList, GetSetting('mode').value);
+    MoveHighlighter(CurrentWord);
 
     if (setting.mode.selected === 1)
     {
@@ -440,7 +443,14 @@ function UpdateMode()
         RemoveClassNode(Input, 'float');
     }
 
-    MoveHighlighter(CurrentWord);
+    if (setting.mode.selected < 2) 
+    {
+        WordList.style.height = (Highlighter.getBoundingClientRect().height * 3) + 'px';
+    } 
+    else 
+    {
+        WordList.style.height = Highlighter.getBoundingClientRect().height + 'px';
+    }
 }
 
 function UpdateTheme()
