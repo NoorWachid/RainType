@@ -106,16 +106,8 @@ function Tinker()
 function UpdateInfo()
 {
     let message = '';
-    const minute = Math.floor(timer / 60);
-    if (minute > 0)
-    {
-        message += `${minute}m ${timer % 60}s`
-    }
-    else
-    {
-        message += `${timer}s`;
-    }
-    message += ` — ${GetWpm().toFixed(1)}w/m`;
+    message += SecondsToClock(timer);
+    message += ` — ${GetWpm().toFixed(1)} WPM`;
     Info.textContent = message;
 }
 
@@ -156,7 +148,7 @@ async function FetchWordList()
     WaitScreen.textContent = 'Wait...';
     Highlighter.hidden = true;
 
-    const response = await fetch(`Data/${GetSetting('language').value}`);
+    const response = await fetch(`assets/data/${GetSetting('language').value}`);
 
     if (response.ok) 
     {
@@ -456,5 +448,13 @@ function UpdateMode()
 function UpdateTheme()
 {
     const themeNode = document.getElementById('theme');
-    themeNode.href = `Resources/${GetSetting('theme').value}`;
+    themeNode.href = `assets/css/${GetSetting('theme').value}`;
+}
+
+function SecondsToClock(seconds) {
+    const s = seconds % 60;
+    let str = Math.floor(seconds / 60);
+    str += ':';
+    str += s < 10 ? `0${s}` : s;
+    return str;
 }
