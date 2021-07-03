@@ -19,6 +19,7 @@ const setting = {
     time: {
         selected: 0,
         options: [
+            { value: 10, text: '10s', alternate: 'Ten seconds' },
             { value: 30, text: '30s', alternate: 'Thirty seconds' },
             { value: 60, text: '60s', alternate: 'A minute' }, 
             { value: 120, text: '2m', alternate: 'Two minutes' }, 
